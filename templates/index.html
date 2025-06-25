@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cyber Attack Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🚀 Cyber Attack Prediction</h2>
+    <form method="post" action="/predict" class="card p-4 shadow-lg bg-white rounded">
+        <div class="row">
+            {% for feature in features %}
+            <div class="col-md-4 mb-3">
+                <label class="form-label">{{ feature }}</label>
+                <input type="number" step="any" name="{{ feature }}" class="form-control"
+                       value="{{ input_data[loop.index0] if input_data else '' }}" required>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+    {% if result %}
+    <div class="alert alert-info text-center mt-4">
+        <h4>🔍 Prediction: {{ result }}</h4>
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
